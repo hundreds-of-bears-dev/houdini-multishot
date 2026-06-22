@@ -8,6 +8,9 @@ requires = ["houdini"]
 
 def commands():
     env.PYTHONPATH.append("{root}/python")
+    if "HOUDINI_DSO_PATH" not in env.keys():
+        env.HOUDINI_DSO_PATH.set("&")
+    env.HOUDINI_DSO_PATH.prepend("{root}/dso")
 
 uuid = "houdini_multishot"
 

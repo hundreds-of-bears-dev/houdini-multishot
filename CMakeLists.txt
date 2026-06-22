@@ -11,6 +11,7 @@ add_library( ${library_name} SHARED
 )
 
 target_link_libraries( ${library_name} Houdini )
-# houdini_configure_target(${library_name} INSTDIR ${CMAKE_INSTALL_PREFIX}/dso)
+houdini_configure_target(${library_name} INSTDIR ${PROJECT_BINARY_DIR}/dso)
 install(DIRECTORY python DESTINATION ${CMAKE_INSTALL_PREFIX})
+install(DIRECTORY ${PROJECT_BINARY_DIR}/dso DESTINATION ${CMAKE_INSTALL_PREFIX})
 
