@@ -7,7 +7,7 @@ authors = ["hundredsofbears",]
 requires = ["houdini"]
 
 def commands():
-    print("\nwe've done it\n")
+    env.PYTHONPATH.append("{root}/python")
 
 uuid = "houdini_multishot"
 

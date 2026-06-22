@@ -4,11 +4,13 @@ include(RezBuild)
 
 find_package( Houdini REQUIRED )
 
-set( library_name foo )
+set( library_name libmultishot )
 
 add_library( ${library_name} SHARED
-    src/functions.C
+    src/expr.C
 )
 
 target_link_libraries( ${library_name} Houdini )
-houdini_configure_target( ${library_name} )
+# houdini_configure_target(${library_name} INSTDIR ${CMAKE_INSTALL_PREFIX}/dso)
+install(DIRECTORY python DESTINATION ${CMAKE_INSTALL_PREFIX})
+
