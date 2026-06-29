@@ -4,21 +4,20 @@ import pdg
 import string
 
 
-def eval_pdg(attrname):
+def eval_pdg(attrname, index=0):
     if not (active := pdg.workItem()):
         return None
     if not (attr := active.attrib(attrname)):
         return None
-    return attr.value()
+    return attr.value(index=index)
 
 
-# TODO: add support for passing in an index to check
 def expand_str(val: str, encode:bool=False):
     result = []
     for head, field, spec, conversion in string.Formatter().parse(val):
         result.append(head)
         if field:
-            pdgval = eval_pdg(field)
+            pdgval = eval_pdg(field, index=int(spec) if spec and spec.isdigit() else 0)
             pdgvals = str(pdgval) if pdgval else None
             result.append(pdgvals or hou.contextOption(field) or '')
     return ''.join(result)
